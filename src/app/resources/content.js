@@ -9,6 +9,7 @@ const person = {
   role: "Design Engineer",
   avatar: "/images/avatar.jpg",
   location: "Asia/Kolkata", // IANA time zone identifier for India
+  locationDisplay: "Assam, India", // Display text for location
   languages: ["English", "Hindi"], // optional: Leave the array empty if you don't want to display languages
 };
 
@@ -69,7 +70,7 @@ const home = {
 const about = {
   label: "About",
   title: "About me",
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Meet ${person.name}, ${person.role} from ${person.locationDisplay}`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -165,14 +166,14 @@ const about = {
             src: "/1.jpeg",
             // src: "https://images.unsplash.com/photo-1624996752380-8ec242e0f85d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             alt: "Project image",
-            width: 12,
+            width: 16,
             height: 9,
           },
           {
-            src: "/2.jpeg",
+            src: "/2.jpg",
             // src: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             alt: "Project image",
-            width: 12,
+            width: 16,
             height: 9,
           },
         ],
@@ -183,7 +184,7 @@ const about = {
         // optional: leave the array empty if you don't want to display images
         images: [
           {
-            src: "https://images.unsplash.com/photo-1485796826113-174aa68fd81b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            src: "/AIML.png",
             alt: "AI and Machine Learning",
             width: 16,
             height: 9,
