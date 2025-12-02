@@ -272,11 +272,21 @@ npm run dev
 
 ### Development Workflow
 
-````mermaid
+```mermaid
 flowchart LR
     A[Clone Repo] --> B[Install Dependencies]
     B --> C[Configure .env]
     C --> D[Customize Content]
+    D --> E[Run Dev Server]
+    E --> F{Test Locally}
+    F -->|Pass| G[Build]
+    F -->|Fail| D
+    G --> H[Deploy to Vercel]
+```
+
+---
+
+## ⚙️ Configuration
 
 ### 1. Site Configuration (`src/app/resources/config.js`)
 
@@ -290,7 +300,7 @@ const style = {
   accent: "orange",
   // ... more options
 };
-````
+```
 
 ### 2. Content Configuration (`src/app/resources/content.js`)
 
