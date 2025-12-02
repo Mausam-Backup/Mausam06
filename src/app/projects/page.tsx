@@ -70,10 +70,10 @@ export default function Projects() {
             <Heading
                 as="h1"
                 variant="display-strong-s"
-                marginBottom="m"
-                className="block md:hidden"
+                marginBottom="l"
+                className="text-left md:text-center"
             >
-                My Projects
+                Projects
             </Heading>
             <MasonryGrid />
         </Flex>
