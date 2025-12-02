@@ -67,14 +67,14 @@ export default function Projects() {
                     }),
                 }}
             />
-            <Heading
-                as="h1"
-                variant="display-strong-s"
-                marginBottom="l"
-                className="text-left md:text-center"
-            >
-                Projects
-            </Heading>
+            <Flex show="s" fillWidth marginBottom="l">
+                <Heading
+                    as="h1"
+                    variant="display-strong-s"
+                >
+                    Explore My Projects
+                </Heading>
+            </Flex>
             <MasonryGrid />
         </Flex>
     );
