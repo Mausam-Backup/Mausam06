@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Masonry from "react-masonry-css";
 import { SmartImage, SmartLink, Flex, Heading, Text, Avatar, RevealFx } from "@/once-ui/components";
 import styles from "./Gallery.module.scss";
 import { projects, person } from "@/app/resources/content";
 
 export default function MasonryGrid() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const breakpointColumnsObj = {
     default: 4,
     1440: 3,
@@ -21,7 +23,7 @@ export default function MasonryGrid() {
     >
       {projects.items.map((project, index) => (
         <div key={index} className={styles.projectCard}>
-          <div className={styles.imageWrapper}>
+          <div className={styles.imageWrapper} style={{ zIndex: activeIndex === index ? 10 : 1 }}>
             <RevealFx
               translateY="16"
               speed="fast"
@@ -35,6 +37,7 @@ export default function MasonryGrid() {
                 alt={project.title}
                 className={styles.gridItem}
                 enlarge
+                onEnlargeToggle={(isEnlarged) => setActiveIndex(isEnlarged ? index : null)}
               />
             </RevealFx>
           </div>

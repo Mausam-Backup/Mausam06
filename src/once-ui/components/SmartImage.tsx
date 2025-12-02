@@ -17,6 +17,7 @@ export interface SmartImageProps extends React.ComponentProps<typeof Flex> {
   unoptimized?: boolean;
   sizes?: string;
   priority?: boolean;
+  onEnlargeToggle?: (isEnlarged: boolean) => void;
 }
 
 const SmartImage: React.FC<SmartImageProps> = ({
@@ -30,6 +31,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
   unoptimized = false,
   priority,
   sizes = "100vw",
+  onEnlargeToggle,
   ...rest
 }) => {
   const [isEnlarged, setIsEnlarged] = useState(false);
@@ -37,7 +39,9 @@ const SmartImage: React.FC<SmartImageProps> = ({
 
   const handleClick = () => {
     if (enlarge) {
-      setIsEnlarged(!isEnlarged);
+      const nextState = !isEnlarged;
+      setIsEnlarged(nextState);
+      onEnlargeToggle?.(nextState);
     }
   };
 
@@ -45,12 +49,13 @@ const SmartImage: React.FC<SmartImageProps> = ({
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isEnlarged) {
         setIsEnlarged(false);
+        onEnlargeToggle?.(false);
       }
     };
 
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
-  }, [isEnlarged]);
+  }, [isEnlarged, onEnlargeToggle]);
 
   useEffect(() => {
     if (isEnlarged) {
