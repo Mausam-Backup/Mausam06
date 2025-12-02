@@ -234,15 +234,15 @@ const projects = {
     {
       title: "Project 3",
       description: "Description of project 3",
-      image: "/images/gallery/img-03.jpg",
-      github: "https://github.com/Mausam5055/project-3",
+      image: "/images/gallery/img-03.png",
+      github: "https://github.com/Mausam5055/Github-Email-Automation",
       orientation: "vertical",
     },
     {
       title: "Project 4",
       description: "Description of project 4",
-      image: "/images/gallery/img-04.webp",
-      github: "https://github.com/Mausam5055/project-4",
+      image: "/images/gallery/img-04.png",
+      github: "https://campus-sync-frontend-three.vercel.app/",
       orientation: "horizontal",
     },
     {
