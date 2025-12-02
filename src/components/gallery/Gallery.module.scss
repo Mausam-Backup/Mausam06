@@ -13,29 +13,21 @@
 .projectCard {
     display: flex;
     flex-direction: column;
-    margin-bottom: var(--static-space-16);
-    border-radius: var(--radius-m);
-    background: var(--neutral-background-medium);
-    overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    }
+    margin-bottom: var(--static-space-32);
 }
 
 .imageWrapper {
     position: relative;
     overflow: hidden;
     width: 100%;
+    border-radius: var(--radius-m);
 }
 
 .gridItem {
     width: 100%;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    .projectCard:hover & {
+    .imageWrapper:hover & {
         transform: scale(1.02);
     }
 }
