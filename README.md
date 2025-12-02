@@ -101,10 +101,6 @@ graph LR
     C --> D[SCSS Modules]
     A --> E[Once UI]
     A --> F[MDX]
-    style A fill:#000,stroke:#fff,color:#fff
-    style B fill:#61DAFB,stroke:#000,color:#000
-    style C fill:#3178C6,stroke:#fff,color:#fff
-    style D fill:#CC6699,stroke:#fff,color:#fff
 ```
 
 ### Dependencies
@@ -161,12 +157,6 @@ flowchart TB
         O[Sitemap] --> P[robots.txt]
     end
 
-    style Client fill:#e1f5ff
-    style Server fill:#fff3e0
-    style Content fill:#f3e5f5
-    style Resources fill:#e8f5e9
-    style Components fill:#fce4ec
-    style SEO fill:#fff8e1
 ```
 
 ### Data Flow
@@ -282,25 +272,11 @@ npm run dev
 
 ### Development Workflow
 
-```mermaid
+````mermaid
 flowchart LR
     A[Clone Repo] --> B[Install Dependencies]
     B --> C[Configure .env]
     C --> D[Customize Content]
-    D --> E[Run Dev Server]
-    E --> F{Test Locally}
-    F -->|Pass| G[Build]
-    F -->|Fail| D
-    G --> H[Deploy to Vercel]
-
-    style A fill:#e3f2fd
-    style H fill:#c8e6c9
-    style F fill:#fff9c4
-```
-
----
-
-## ⚙️ Configuration
 
 ### 1. Site Configuration (`src/app/resources/config.js`)
 
@@ -314,7 +290,7 @@ const style = {
   accent: "orange",
   // ... more options
 };
-```
+````
 
 ### 2. Content Configuration (`src/app/resources/content.js`)
 
@@ -505,9 +481,6 @@ flowchart LR
     F --> G{Review}
     G -->|Approved| H[Merge]
     G -->|Changes Needed| C
-
-    style A fill:#e1f5ff
-    style H fill:#c8e6c9
 ```
 
 1. Fork the repository
