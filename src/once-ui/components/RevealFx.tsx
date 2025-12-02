@@ -71,9 +71,25 @@ const RevealFx = forwardRef<HTMLDivElement, RevealFxProps>(
 
     const translateValue = getTranslateYValue();
 
+    const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+
+    useEffect(() => {
+      if (isRevealed) {
+        const duration =
+          speed === "fast" ? 1000 : speed === "medium" ? 2000 : speed === "slow" ? 3000 : 2000;
+        const timer = setTimeout(() => {
+          setIsAnimationComplete(true);
+        }, duration);
+        return () => clearTimeout(timer);
+      } else {
+        setIsAnimationComplete(false);
+      }
+    }, [isRevealed, speed]);
+
     const revealStyle: React.CSSProperties = {
       transitionDuration: getSpeedDuration(),
       transform: isRevealed ? "translateY(0)" : `translateY(${translateValue})`,
+      maskImage: isAnimationComplete ? "none" : undefined,
       ...style,
     };
 

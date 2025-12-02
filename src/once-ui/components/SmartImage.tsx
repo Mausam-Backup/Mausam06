@@ -1,6 +1,7 @@
 "use client";
 
 import React, { CSSProperties, useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 
 import { Flex, Skeleton } from "@/once-ui/components";
@@ -164,59 +165,63 @@ const SmartImage: React.FC<SmartImageProps> = ({
         )}
       </Flex>
 
-      {isEnlarged && enlarge && (
-        <Flex
-          horizontal="center"
-          vertical="center"
-          position="fixed"
-          background="overlay"
-          onClick={handleClick}
-          top="0"
-          left="0"
-          opacity={isEnlarged ? 100 : 0}
-          cursor="interactive"
-          transition="macro-medium"
-          style={{
-            width: "100vw",
-            height: "100vh",
-          }}
-        >
+      {isEnlarged &&
+        enlarge &&
+        createPortal(
           <Flex
-            position="relative"
+            horizontal="center"
+            vertical="center"
+            position="fixed"
+            background="overlay"
+            onClick={handleClick}
+            top="0"
+            left="0"
+            opacity={isEnlarged ? 100 : 0}
+            cursor="interactive"
+            transition="macro-medium"
             style={{
+              width: "100vw",
               height: "100vh",
-              transform: "translate(-50%, -50%)",
+              zIndex: 9999,
             }}
-            onClick={(e) => e.stopPropagation()}
           >
-            {isVideo ? (
-              <video
-                src={src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  width: "90vw",
-                  height: "auto",
-                  objectFit: "contain",
-                }}
-              />
-            ) : (
-              <Image
-                src={src}
-                alt={alt}
-                fill
-                sizes="90vw"
-                unoptimized={unoptimized}
-                style={{
-                  objectFit: "contain",
-                }}
-              />
-            )}
-          </Flex>
-        </Flex>
-      )}
+            <Flex
+              position="relative"
+              style={{
+                height: "100vh",
+                transform: "translate(-50%, -50%)",
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {isVideo ? (
+                <video
+                  src={src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    width: "90vw",
+                    height: "auto",
+                    objectFit: "contain",
+                  }}
+                />
+              ) : (
+                <Image
+                  src={src}
+                  alt={alt}
+                  fill
+                  sizes="90vw"
+                  unoptimized={unoptimized}
+                  style={{
+                    objectFit: "contain",
+                  }}
+                />
+              )}
+            </Flex>
+          </Flex>,
+          document.body,
+        )}
     </>
   );
 };
