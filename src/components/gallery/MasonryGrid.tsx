@@ -30,6 +30,7 @@ export default function MasonryGrid() {
               src={project.image}
               alt={project.title}
               className={styles.gridItem}
+              enlarge
             />
           </div>
           <Flex
