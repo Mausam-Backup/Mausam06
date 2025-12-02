@@ -63,7 +63,7 @@ export default function MasonryGrid() {
             )}
 
             {project.features && project.features.length > 0 && (
-                <Flex direction="column" gap="4">
+                <Flex direction="column" gap="4" className={styles.mobileOnly}>
                     <Text variant="label-default-s" onBackground="neutral-strong">Features:</Text>
                     <ul style={{ paddingLeft: '20px', margin: 0 }}>
                         {project.features.map((feature, i) => (
@@ -76,10 +76,12 @@ export default function MasonryGrid() {
             )}
 
             {project.outcome && (
-                <Text variant="body-default-s" onBackground="neutral-weak">
-                    <Text as="span" variant="label-default-s" onBackground="neutral-strong">Outcome: </Text>
-                    {project.outcome}
-                </Text>
+                <Flex className={styles.mobileOnly}>
+                    <Text variant="body-default-s" onBackground="neutral-weak">
+                        <Text as="span" variant="label-default-s" onBackground="neutral-strong">Outcome: </Text>
+                        {project.outcome}
+                    </Text>
+                </Flex>
             )}
 
             <Flex fillWidth horizontal="space-between" align="center" gap="24" wrap>
