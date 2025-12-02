@@ -1,7 +1,7 @@
 "use client";
 
 import Masonry from "react-masonry-css";
-import { SmartImage, SmartLink, Flex, Heading, Text, Avatar } from "@/once-ui/components";
+import { SmartImage, SmartLink, Flex, Heading, Text, Avatar, RevealFx } from "@/once-ui/components";
 import styles from "./Gallery.module.scss";
 import { projects, person } from "@/app/resources/content";
 
@@ -22,16 +22,21 @@ export default function MasonryGrid() {
       {projects.items.map((project, index) => (
         <div key={index} className={styles.projectCard}>
           <div className={styles.imageWrapper}>
-            <SmartImage
-              priority={index < 10}
-              sizes="(max-width: 560px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 25vw"
-              radius="m"
-              aspectRatio="16 / 9"
-              src={project.image}
-              alt={project.title}
-              className={styles.gridItem}
-              enlarge
-            />
+            <RevealFx
+              translateY="16"
+              speed="fast"
+            >
+              <SmartImage
+                priority={index < 10}
+                sizes="(max-width: 560px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 25vw"
+                radius="m"
+                aspectRatio="16 / 9"
+                src={project.image}
+                alt={project.title}
+                className={styles.gridItem}
+                enlarge
+              />
+            </RevealFx>
           </div>
           <Flex
             direction="column"
