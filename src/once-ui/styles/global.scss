@@ -74,3 +74,12 @@ a:not(.button) {
         display: none !important;
     }
 }
+
+@media (min-width: 769px) {
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+}

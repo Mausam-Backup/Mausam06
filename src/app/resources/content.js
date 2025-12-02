@@ -311,7 +311,7 @@ const projects = {
     {
       title: "Project 14",
       description: "Description of project 14",
-      image: "/images/gallery/img-14.jpg",
+      image: "/images/gallery/img-14.png",
       github: "https://github.com/Mausam5055/Ecommerce-Website-1",
       orientation: "horizontal",
     },
