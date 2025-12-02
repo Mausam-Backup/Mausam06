@@ -248,22 +248,22 @@ const projects = {
     {
       title: "Project 5",
       description: "Description of project 5",
-      image: "/images/gallery/img-05.jpg",
-      github: "https://github.com/Mausam5055/project-5",
+      image: "/images/gallery/img-05.png",
+      github: "https://github.com/Mausam5055/Club-Website",
       orientation: "horizontal",
     },
     {
       title: "Project 6",
       description: "Description of project 6",
-      image: "/images/gallery/img-06.jpg",
-      github: "https://github.com/Mausam5055/project-6",
+      image: "/images/gallery/img-06.png",
+      github: "https://github.com/Mausam5055/Retrival-Augmented-Generation-1",
       orientation: "vertical",
     },
     {
       title: "Project 7",
       description: "Description of project 7",
-      image: "/images/gallery/img-07.jpg",
-      github: "https://github.com/Mausam5055/project-7",
+      image: "/images/gallery/img-07.png",
+      github: "https://github.com/Mausam5055/Stock-Market",
       orientation: "horizontal",
     },
     {
