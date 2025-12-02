@@ -47,7 +47,7 @@ export default function MasonryGrid() {
                 {project.description}
               </Text>
             )}
-            <Flex gap="16" wrap>
+            <Flex fillWidth horizontal="space-between" gap="24" wrap>
               {project.caseStudy && (
                 <SmartLink
                   suffixIcon="arrowRight"
