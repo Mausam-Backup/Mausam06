@@ -55,7 +55,7 @@ export default function Home() {
               name: person.name,
               image: {
                 "@type": "ImageObject",
-                url: `${baseURL}${person.avatar}`,
+                url: `https://${baseURL}${person.avatar}`,
               },
             },
           }),
