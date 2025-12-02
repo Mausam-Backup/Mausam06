@@ -318,8 +318,8 @@ const projects = {
     {
       title: "Project 15",
       description: "Description of project 15",
-      image: "/images/gallery/img-15.jpg",
-      github: "https://github.com/Mausam5055/project-15",
+      image: "/images/gallery/img-15.png",
+      github: "https://github.com/Mausam5055/Priyanka-Interactive",
       orientation: "horizontal",
     },
     {
