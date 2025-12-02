@@ -53,7 +53,7 @@ export default function Projects() {
                                 name: project.title,
                                 description: project.description,
                                 codeRepository: project.github,
-                                image: `${baseURL}${project.image}`,
+                                image: `https://${baseURL}${project.image}`,
                             },
                         })),
                         author: {
@@ -61,7 +61,7 @@ export default function Projects() {
                             name: person.name,
                             image: {
                                 "@type": "ImageObject",
-                                url: `${baseURL}${person.avatar}`,
+                                url: `https://${baseURL}${person.avatar}`,
                             },
                         },
                     }),
