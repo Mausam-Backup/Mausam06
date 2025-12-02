@@ -92,7 +92,7 @@ export default function MasonryGrid() {
             <Flex fillWidth horizontal="space-between" align="center" gap="24" wrap>
               <Flex align="center" gap="8">
                  <Avatar src={person.avatar} size="s"/>
-                 <Text variant="body-default-xs" onBackground="neutral-weak">{person.name}</Text>
+                 <Text variant="body-default-xs" onBackground="neutral-weak" paddingTop="4">{person.name}</Text>
               </Flex>
               <Flex gap="16">
                   {project.caseStudy && (
