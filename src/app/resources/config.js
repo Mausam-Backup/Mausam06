@@ -1,4 +1,4 @@
-const baseURL = "demo.magic-portfolio.com";
+const baseURL = "mausam04.vercel.app";
 
 const routes = {
   "/": true,
