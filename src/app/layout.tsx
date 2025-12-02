@@ -34,7 +34,7 @@ export async function generateMetadata() {
       type: "website",
       images: [
         {
-          url: '/cover.png',
+          url: `https://${baseURL}/og?title=${encodeURIComponent(home.title)}`,
           width: 1920,
           height: 1080,
           alt: `${person.firstName}'s Portfolio`,
@@ -45,7 +45,7 @@ export async function generateMetadata() {
       card: "summary_large_image",
       title: home.title,
       description: home.description,
-      images: ["/cover.png"],
+      images: [`https://${baseURL}/og?title=${encodeURIComponent(home.title)}`],
       creator: "@MausamKar", 
     },
     alternates: {

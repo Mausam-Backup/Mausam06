@@ -20,11 +20,18 @@ export async function generateMetadata() {
       description,
       type: "website",
       url: `https://${baseURL}`,
+      images: [
+        {
+          url: `https://${baseURL}/og?title=${encodeURIComponent(title)}`,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [`https://${baseURL}/og?title=${encodeURIComponent(title)}`],
     },
   };
 }
