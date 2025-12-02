@@ -114,7 +114,7 @@ const about = {
         images: [
           // optional: leave the array empty if you don't want to display images
           {
-            src: "/images/projects/Once-UI.png",
+            src: "/images/projects/Once-Ui.png",
             alt: "Once UI Project",
             width: 16,
             height: 9,
