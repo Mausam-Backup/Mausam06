@@ -1,5 +1,5 @@
 import { getPosts } from "@/app/utils/utils";
-import { Column } from "@/once-ui/components";
+import { Column, Flex, Heading } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
 import { baseURL } from "@/app/resources";
 import { person, work } from "@/app/resources/content";
@@ -63,6 +63,11 @@ export default function Work() {
           }),
         }}
       />
+      <Flex show="s" fillWidth marginBottom="l">
+        <Heading as="h1" variant="display-strong-s">
+          Featured Projects
+        </Heading>
+      </Flex>
       <Projects />
     </Column>
   );

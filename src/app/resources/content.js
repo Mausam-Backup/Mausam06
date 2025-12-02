@@ -231,7 +231,7 @@ const projects = {
       orientation: "vertical",
     },
     {
-      title: "DesignCode Hackathon — Frontend Project",
+      title: "Design2Code Hackathon",
       description: "A polished hackathon submission featuring a dark-mode UI, animations, and modern design standards.",
       type: "Frontend UI",
       tech: "React, TailwindCSS, GSAP, JavaScript",
@@ -257,7 +257,7 @@ const projects = {
       orientation: "vertical",
     },
     {
-      title: "RAG System (Retrieval-Augmented Generation)",
+      title: "RAG System",
       description: "A RAG pipeline that retrieves contextual data from vector databases and generates accurate answers.",
       type: "AI + LLM",
       tech: "Pinecone, Next.js, OpenAI API",
@@ -271,7 +271,7 @@ const projects = {
     },
     {
       title: "Linpack Club — Frontend UI",
-      description: "A creative portfolio-style UI for a design club.",
+      description: "A creative portfolio-style UI for My college Linpack Club.",
       type: "UI/UX Frontend",
       tech: "React, TailwindCSS, GSAP, JavaScript",
       features: ["Smooth interactive layouts", "Hover animations", "Styled component sections"],
@@ -283,7 +283,7 @@ const projects = {
       orientation: "horizontal",
     },
     {
-      title: "CampusSync — Education Management System",
+      title: "CampusSync",
       description: "A complete academic management platform for students and faculty.",
       type: "Full Stack App",
       tech: "Next.js, Supabase, Tailwind, React",
@@ -299,7 +299,7 @@ const projects = {
       title: "StockMarket — Full Stack",
       description: "A dashboard showing stock data, analytics, and investment insights.",
       type: "Finance App",
-      tech: "MongoDB, Next.js, Chart libraries, REST APIs",
+      tech: "MongoDB, Next.js, REST APIs",
       features: ["Real-time stock graphing", "AI-assisted investment tips", "Secure user auth"],
       outcome: "Makes market tracking accessible for beginners.",
       image: "/images/gallery/img-07.png",
@@ -309,7 +309,7 @@ const projects = {
       orientation: "horizontal",
     },
     {
-      title: "ConnectFlow — Real-Time Chat & Video Call App",
+      title: "Connect Flow",
       description: "A modern communication platform with real-time messaging and face-to-face calling.",
       type: "Real-time Communication",
       tech: "WebRTC, Socket.io, React, Node",
@@ -322,8 +322,8 @@ const projects = {
       orientation: "vertical",
     },
     {
-      title: "Kar’s Kitchen — Full Stack Restaurant App",
-      description: "A complete ordering platform for restaurants.",
+      title: "Kar’s Kitchen",
+      description: "A Fullstack  complete ordering platform for restaurants with admin panel.",
       type: "Food Ordering System",
       tech: "MongoDB, Next.js, Stripe, Razorpay",
       features: ["Menu browsing & filters", "Online payments", "Real-time order tracking"],
@@ -335,7 +335,7 @@ const projects = {
       orientation: "horizontal",
     },
     {
-      title: "Be A Hero in Real Life — Blood Donation System",
+      title: "Blood Donation System",
       description: "Helps connect blood donors with recipients effectively.",
       type: "Health + Social Service App",
       tech: "React, Node.js, Express, MongoDB",
@@ -348,7 +348,7 @@ const projects = {
       orientation: "horizontal",
     },
     {
-      title: "Event Management & Hosting Platform",
+      title: "Event Management Platform",
       description: "A platform to host events, sell tickets, and manage attendees.",
       type: "EventTech Product",
       tech: "Next.js, Stripe, Tailwind, APIs",
