@@ -31,8 +31,8 @@
 }
 
 .mobileOnly {
-    display: none;
+    display: none !important;
     @media (max-width: 768px) {
-        display: flex;
+        display: flex !important;
     }
 }
