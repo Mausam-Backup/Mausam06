@@ -220,15 +220,15 @@ const projects = {
     {
       title: "Project 1",
       description: "Description of project 1",
-      image: "/images/gallery/img-01.jpg",
-      github: "https://github.com/Mausam5055/project-1",
+      image: "/images/gallery/img-01.png",
+      github: "https://github.com/Mausam5055/Phising-Detection",
       orientation: "vertical",
     },
     {
       title: "Project 2",
       description: "Description of project 2",
-      image: "/images/gallery/img-02.jpeg",
-      github: "https://github.com/Mausam5055/project-2",
+      image: "/images/gallery/img-02.png",
+      github: "https://github.com/Mausam5055/Design2Code",
       orientation: "horizontal",
     },
     {
