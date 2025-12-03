@@ -58,7 +58,7 @@ const home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Full Stack Web Developer and builder</>,
+  headline: <>Full Stack Web Developer </>,
   subline: (
     <>
       I'm Mausam Kar, a Full Stack Web Developer at <InlineCode>VIT</InlineCode>, where I craft intuitive
