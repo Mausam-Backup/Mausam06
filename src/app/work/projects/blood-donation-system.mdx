@@ -12,6 +12,191 @@ team:
 link: "https://github.com/Mausam5055/Blood-Bank-Management"
 ---
 
-## Project Overview
+# 🩸 Blood Bank Management System
 
-Content coming soon...
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000?logo=vercel)](https://blood-bank-management-gamma.vercel.app/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![React](https://img.shields.io/badge/React-18.3.1-61dafb?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-3178c6?logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.11-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
+
+## 🌐 Live Demo
+
+**Website:** [https://blood-bank-management-gamma.vercel.app/](https://blood-bank-management-gamma.vercel.app/)
+
+## 📖 Project Overview
+
+Blood Bank Management System is a modern, full-stack web application designed to streamline the process of blood donation, donor management, and blood requests. The platform connects donors, hospitals, and recipients, making it easier to save lives through efficient blood management. It leverages the power of Supabase for real-time data handling and React for a responsive user interface.
+
+## 🚀 Features
+
+| Feature                   | Description                                                                                          |
+| ------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Donor Registration**    | Easy sign-up and profile management for blood donors with availability toggles.                      |
+| **Blood Request System**  | Emergency blood request creation with tracking of request status (Pending, Accepted, Completed).     |
+| **Smart Donor Search**    | Advanced filtering to find donors by specific blood type, location, and real-time availability.      |
+| **Hospital Dashboard**    | Dedicated interface for hospitals to manage blood inventory, requests, and donor lists.              |
+| **Event Management**      | Tools to organize, promote, and manage blood donation camps and events.                              |
+| **Educational Resources** | Integrated blog and resource section to educate users about the importance of blood donation.        |
+| **Secure Authentication** | Role-based authentication (Donor, Hospital, Admin) using Supabase Auth.                              |
+| **Responsive UI**         | Mobile-first design ensures accessibility across all devices, built with Tailwind CSS and shadcn-ui. |
+| **Real-time Analytics**   | Visual dashboard displaying donor statistics, request fulfillment rates, and inventory levels.       |
+
+## 🏗️ System Architecture
+
+The application follows a serverless architecture pattern, utilizing Supabase as a Backend-as-a-Service (BaaS) to handle database, authentication, and real-time subscriptions.
+
+```mermaid
+graph TD
+    User[User/Donor] -->|HTTPS| Frontend[React + Vite Frontend]
+    Admin[Hospital Admin] -->|HTTPS| Frontend
+
+    subgraph "Client Layer"
+        Frontend
+        Store[React Query State]
+    end
+
+    subgraph "Backend Layer (Supabase)"
+        Auth[Authentication]
+        DB[(PostgreSQL Database)]
+        API[Auto-generated REST/Realtime API]
+        Storage[File Storage]
+    end
+
+    Frontend -->|Auth Requests| Auth
+    Frontend -->|Data Fetch/Sub| API
+    API --> DB
+    API --> Storage
+```
+
+## 🔄 User Workflow
+
+The following sequence diagram illustrates the core workflow of a donor registering and a hospital requesting blood.
+
+```mermaid
+sequenceDiagram
+    participant D as Donor
+    participant S as System
+    participant H as Hospital/Recipient
+
+    Note over D, S: Registration Phase
+    D->>S: Register & Create Profile
+    S->>D: Verify Email & Activate
+    D->>S: Update Availability & Blood Type
+
+    Note over H, S: Request Phase
+    H->>S: Search for Blood Type (e.g., O+)
+    S->>H: Return List of Available Donors
+    H->>S: Send Emergency Request
+    S->>D: Notify Donor (Real-time)
+
+    Note over D, H: Fulfillment Phase
+    D->>S: Accept Request
+    S->>H: Update Request Status to 'Accepted'
+    D->>H: Visit Hospital & Donate
+    H->>S: Mark Request as 'Completed'
+```
+
+## 💾 Database Schema (Conceptual)
+
+The data model is designed to support relationships between users, profiles, and blood requests.
+
+```mermaid
+erDiagram
+    USERS ||--o{ PROFILES : has
+    USERS {
+        uuid id PK
+        string email
+        string role
+    }
+    PROFILES {
+        uuid id PK
+        uuid user_id FK
+        string blood_type
+        boolean is_available
+        string location
+        string phone
+        string avatar_url
+    }
+    BLOOD_REQUESTS {
+        uuid id PK
+        uuid requester_id FK
+        uuid donor_id FK
+        string blood_group
+        string status
+        string urgency
+        timestamp created_at
+    }
+    PROFILES ||--o{ BLOOD_REQUESTS : receives
+    USERS ||--o{ BLOOD_REQUESTS : creates
+```
+
+## 🛠️ Tech Stack
+
+- **Frontend:** [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/)
+- **UI Framework:** [Tailwind CSS](https://tailwindcss.com/), [shadcn-ui](https://ui.shadcn.com/)
+- **State Management:** [React Query](https://tanstack.com/query/latest) (for server state & caching)
+- **Backend & Database:** [Supabase](https://supabase.com/) (PostgreSQL, Auth, Realtime)
+- **Deployment:** [Vercel](https://vercel.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+
+## ⚡ Getting Started
+
+### Prerequisites
+
+- Node.js & npm (recommended: use [nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
+- A Supabase project (for environment variables)
+
+### Setup
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/Mausam5055/Blood-Bank-Management.git
+cd Blood-Bank-Management
+
+# 2. Install dependencies
+npm install
+
+# 3. Configure Environment Variables
+# Create a .env file and add your Supabase credentials
+# VITE_SUPABASE_URL=your_supabase_url
+# VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# 4. Start the development server
+npm run dev
+```
+
+## 🌍 Deployment
+
+This project is optimized for deployment on [Vercel](https://vercel.com/).
+
+1. Fork or clone this repository.
+2. Push to your GitHub account.
+3. Import the repo into Vercel.
+4. Set up the environment variables (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`) in the Vercel dashboard.
+5. Deploy!
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🙏 Contributing
+
+Contributions are welcome! Please open issues or submit pull requests for improvements.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📣 Credits
+
+- Built with [React](https://react.dev/), [Vite](https://vitejs.dev/), [Tailwind CSS](https://tailwindcss.com/), [Supabase](https://supabase.com/), and [shadcn-ui](https://ui.shadcn.com/).
+
+## 👤 Author
+
+**Mausam Kar**
+
+- Portfolio: [mausam03.vercel.app](https://mausam03.vercel.app)
+- GitHub: [@Mausam5055](https://github.com/Mausam5055)
