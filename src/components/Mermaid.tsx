@@ -51,7 +51,13 @@ export default function Mermaid({ chart }: MermaidProps) {
       <div
         ref={ref}
         dangerouslySetInnerHTML={{ __html: svg }}
-        style={{ width: "100%", opacity: loading ? 0 : 1 }}
+        style={{
+          width: "100%",
+          opacity: loading ? 0 : 1,
+          background: "#1f1f1f",
+          padding: "20px",
+          borderRadius: "8px",
+        }}
       />
     </Flex>
   );
