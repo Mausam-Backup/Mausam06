@@ -68,7 +68,7 @@ export default function Work() {
           Featured Projects
         </Heading>
       </Flex>
-      <Projects />
+      <Projects range={[1, 3]} />
     </Column>
   );
 }

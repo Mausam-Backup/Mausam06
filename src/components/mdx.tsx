@@ -4,6 +4,7 @@ import React, { ReactNode } from "react";
 import { SmartImage, SmartLink, Text } from "@/once-ui/components";
 import { CodeBlock } from "@/once-ui/modules";
 import { HeadingLink } from "@/components";
+import Mermaid from "@/components/Mermaid";
 
 import { TextProps } from "@/once-ui/interfaces";
 import { SmartImageProps } from "@/once-ui/components/SmartImage";
@@ -70,6 +71,20 @@ function createImage({ alt, src, ...props }: SmartImageProps & { src: string }) 
     return null;
   }
 
+  const { ref, ...rest } = props as any;
+  const isBadge = src.includes("shields.io") || src.includes("badge");
+
+  if (isBadge) {
+    return (
+      <img
+        alt={alt}
+        src={src}
+        style={{ display: "inline-block", marginRight: "8px", verticalAlign: "middle" }}
+        {...rest}
+      />
+    );
+  }
+
   return (
     <SmartImage
       className="my-20"
@@ -78,7 +93,7 @@ function createImage({ alt, src, ...props }: SmartImageProps & { src: string }) 
       aspectRatio="16 / 9"
       alt={alt}
       src={src}
-      {...props}
+      {...rest}
     />
   );
 }
@@ -128,6 +143,32 @@ function createParagraph({ children }: TextProps) {
   );
 }
 
+function Pre({ children, ...props }: any) {
+  if (React.isValidElement(children) && children.type === 'code') {
+    const { className, children: codeContent } = children.props as any;
+    
+    if (className?.includes('language-mermaid')) {
+      return <Mermaid chart={codeContent} />;
+    }
+
+    // Extract language from className (e.g., "language-python" -> "python")
+    const language = className?.replace('language-', '') || 'text';
+    
+    return (
+      <CodeBlock
+        codeInstances={[{
+          code: codeContent,
+          language: language,
+          label: language.charAt(0).toUpperCase() + language.slice(1)
+        }]}
+        {...props}
+      />
+    );
+  }
+  
+  return <pre {...props}>{children}</pre>;
+}
+
 const components = {
   p: createParagraph as any,
   h1: createHeading(1) as any,
@@ -138,6 +179,17 @@ const components = {
   h6: createHeading(6) as any,
   img: createImage as any,
   a: CustomLink as any,
+  pre: Pre as any,
+  table: (props: any) => (
+    <div className="mdx-table-container">
+      <table {...props} />
+    </div>
+  ),
+  thead: (props: any) => <thead {...props} />,
+  tbody: (props: any) => <tbody {...props} />,
+  tr: (props: any) => <tr {...props} />,
+  th: (props: any) => <th {...props} />,
+  td: (props: any) => <td {...props} />,
   Table,
   CodeBlock,
 };
