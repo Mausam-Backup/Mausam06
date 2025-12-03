@@ -76,7 +76,7 @@ export default function Project({ params }: WorkParams) {
     })) || [];
 
   return (
-    <Column as="section" maxWidth="m" horizontal="center" gap="l">
+    <Column as="section" maxWidth="l" horizontal="center" gap="l">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -99,12 +99,12 @@ export default function Project({ params }: WorkParams) {
           }),
         }}
       />
-      <Column maxWidth="xs" gap="16">
+      <Flex fillWidth gap="16" vertical="center" direction="row" mobileDirection="row">
         <Button href="/work" variant="tertiary" weight="default" size="s" prefixIcon="chevronLeft">
           Projects
         </Button>
         <Heading variant="display-strong-s">{post.metadata.title}</Heading>
-      </Column>
+      </Flex>
       {post.metadata.images.length > 0 && (
         <SmartImage
           priority
@@ -114,7 +114,7 @@ export default function Project({ params }: WorkParams) {
           src={post.metadata.images[0]}
         />
       )}
-      <Column style={{ margin: "auto" }} as="article" maxWidth="xs">
+      <Column style={{ margin: "auto" }} as="article" maxWidth="m">
         <Flex gap="12" marginBottom="24" vertical="center">
           {post.metadata.team && <AvatarGroup reverse avatars={avatars} size="m" />}
           <Text variant="body-default-s" onBackground="neutral-weak">
