@@ -3,7 +3,8 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
+import { Fade, Flex, Line, ToggleButton, IconButton } from "@/once-ui/components";
+import { useTheme } from "next-themes";
 import styles from "@/components/Header.module.scss";
 
 import { routes, display } from "@/app/resources";
@@ -44,6 +45,12 @@ export default TimeDisplay;
 
 export const Header = () => {
   const pathname = usePathname() ?? "";
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
@@ -155,6 +162,15 @@ export const Header = () => {
             gap="20"
           >
             <Flex hide="s">{display.time && <TimeDisplay timeZone={person.location} />}</Flex>
+            {mounted && (
+                <IconButton
+                    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                    icon={theme === 'dark' ? 'sun' : 'moon'}
+                    size="m"
+                    tooltip={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                    variant="ghost"
+                />
+            )}
           </Flex>
         </Flex>
       </Flex>

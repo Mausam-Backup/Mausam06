@@ -214,7 +214,7 @@
     --icon: url('/trademark/icon-light.svg');
     --type: url('/trademark/type-light.svg');
 
-    --page-background:              var(--neutral-background-weak);
+    --page-background:              #ffffff;
     --backdrop:                     var(--static-white-medium);
 
     --solid-border-color-brand:     var(--brand-alpha-strong);
@@ -231,13 +231,13 @@
     --code-orange:                  var(--scheme-orange-600);
     
     /* brand */  
-    --brand-background-strong:      var(--function-brand-800);
+    --brand-background-strong:      #60e4fc;
     --brand-background-medium:      var(--function-brand-1000);
     --brand-background-weak:        var(--static-white);
 
     --brand-on-background-strong:   var(--function-brand-100);
-    --brand-on-background-medium:   var(--function-brand-400);
-    --brand-on-background-weak:     var(--function-brand-600);
+    --brand-on-background-medium:   #045b9c;
+    --brand-on-background-weak:     #0279be;
 
     --brand-border-strong:          var(--function-brand-800);
     --brand-border-medium:          var(--function-brand-900);
@@ -272,16 +272,16 @@
     --accent-alpha-weak:            var(--function-accent-600-10);
 
     /* neutral */
-    --neutral-background-strong:    var(--function-neutral-800);
+    --neutral-background-strong:    #d2d2d2;
     --neutral-background-medium:    var(--function-neutral-1000);
     --neutral-background-weak:      var(--static-white);
 
-    --neutral-on-background-strong: var(--function-neutral-100);
-    --neutral-on-background-medium: var(--function-neutral-400);
-    --neutral-on-background-weak:   var(--function-neutral-600);
+    --neutral-on-background-strong: #0a0a0a;
+    --neutral-on-background-medium: #595959;
+    --neutral-on-background-weak:   #757575;
   
-    --neutral-solid-strong:         var(--function-neutral-600);
-    --neutral-solid-medium:         var(--function-neutral-500);
+    --neutral-solid-strong:         #959595;
+    --neutral-solid-medium:         #757575;
     --neutral-solid-weak:           var(--function-neutral-400);
   
     --neutral-on-solid-strong:      var(--static-white);      
