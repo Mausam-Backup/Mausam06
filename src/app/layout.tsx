@@ -22,7 +22,7 @@ export async function generateMetadata() {
       template: `%s | ${home.title}`,
     },
     description: home.description,
-    keywords: ["Design Engineer", "Portfolio", "Web Developer", "React", "Next.js", person.name, "Mausam Kar", "Frontend Developer", "UI/UX Designer"],
+    keywords: ["Full Stack Web Developer", "Portfolio", "Web Developer", "React", "Next.js", person.name, "Mausam Kar", "Frontend Developer", "UI/UX Designer"],
     authors: [{ name: person.name, url: `https://${baseURL}` }],
     creator: person.name,
     publisher: person.name,

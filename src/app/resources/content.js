@@ -6,7 +6,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Design Engineer",
+  role: "Full Stack Web Developer",
   avatar: "/images/avatar.jpg",
   location: "Asia/Kolkata", // IANA time zone identifier for India
   locationDisplay: "Assam, India", // Display text for location
@@ -58,10 +58,10 @@ const home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Design engineer and builder</>,
+  headline: <>Full Stack Web Developer and builder</>,
   subline: (
     <>
-      I'm Mausam Kar, a design engineer at <InlineCode>VIT</InlineCode>, where I craft intuitive
+      I'm Mausam Kar, a Full Stack Web Developer at <InlineCode>VIT</InlineCode>, where I craft intuitive
       <br /> user experiences. After hours, I build my own projects.
     </>
   ),
@@ -87,7 +87,7 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Mausam is a Indian-based design engineer with a passion for transforming complex challenges
+        Mausam is a Indian-based Full Stack Web Developer with a passion for transforming complex challenges
         into simple, elegant design solutions. His work spans digital interfaces, interactive
         experiences, and the convergence of design and technology.
       </>
