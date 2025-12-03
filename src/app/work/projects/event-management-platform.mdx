@@ -14,4 +14,443 @@ link: "https://github.com/Mausam5055/Event-Management-System"
 
 ## Project Overview
 
-Content coming soon...
+# Event Management System
+
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38B2AC?style=for-the-badge&logo=tailwind-css)
+![MongoDB](https://img.shields.io/badge/MongoDB-6-green?style=for-the-badge&logo=mongodb)
+![Clerk](https://img.shields.io/badge/Clerk-Auth-orange?style=for-the-badge&logo=clerk)
+![Stripe](https://img.shields.io/badge/Stripe-Payments-purple?style=for-the-badge&logo=stripe)
+
+A full-featured Event Management System built with Next.js 14, allowing users to create, discover, and manage events with secure authentication and payment processing.
+
+## 🌟 Key Features
+
+| Feature                 | Description                                              |
+| ----------------------- | -------------------------------------------------------- |
+| **Event Creation**      | Users can create and manage events with rich details     |
+| **Ticket Booking**      | Secure ticket purchasing with Stripe integration         |
+| **User Authentication** | Secure authentication with Clerk                         |
+| **Event Discovery**     | Browse and search events by category, date, and location |
+| **Profile Management**  | Personal dashboard for managing events and tickets       |
+| **Image Upload**        | Upload event images with UploadThing integration         |
+| **Responsive Design**   | Fully responsive UI for all device sizes                 |
+
+## 📸 Preview
+
+<div align="center">
+  <img src="/public/assets/images/hero.png" alt="Hero Section" width="45%" />
+
+  <p><em>Event Management Dashboard</em></p>
+</div>
+
+## 🏗️ Architecture Overview
+
+```mermaid
+graph TD
+    A[Client - Next.js Frontend] --> B[Server Actions]
+    B --> C[(MongoDB Database)]
+    B --> D[Third Party APIs]
+
+    D --> E[Clerk Auth]
+    D --> F[Stripe Payments]
+    D --> G[UploadThing]
+
+    C --> H[Users Collection]
+    C --> I[Events Collection]
+    C --> J[Categories Collection]
+    C --> K[Orders Collection]
+
+    subgraph "Frontend Components"
+        L[Event Form]
+        M[Event Cards]
+        N[Checkout]
+        O[Search & Filter]
+    end
+
+    A --> L
+    A --> M
+    A --> N
+    A --> O
+```
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+| Technology          | Purpose                                       |
+| ------------------- | --------------------------------------------- |
+| **Next.js 14**      | React framework with App Router               |
+| **TypeScript**      | Type safety and enhanced developer experience |
+| **Tailwind CSS**    | Utility-first CSS framework                   |
+| **ShadCN/UI**       | Component library built on Radix UI           |
+| **React Hook Form** | Form validation and handling                  |
+| **Zod**             | Schema validation                             |
+
+### Backend & Services
+
+| Technology      | Purpose                            |
+| --------------- | ---------------------------------- |
+| **MongoDB**     | Primary database                   |
+| **Mongoose**    | MongoDB object modeling            |
+| **Clerk**       | Authentication and user management |
+| **Stripe**      | Payment processing                 |
+| **UploadThing** | Image/file uploads                 |
+
+## 📁 Project Structure
+
+```
+EVENT-MANAGEMENT-SYSTEM/
+├── app/                     # Next.js 14 app directory
+│   ├── (auth)/             # Authentication routes
+│   ├── (root)/             # Main application pages
+│   └── api/                # API routes
+├── components/             # Reusable UI components
+│   ├── shared/             # Shared components
+│   └── ui/                 # ShadCN/UI components
+├── constants/              # Application constants
+├── lib/                    # Business logic and utilities
+│   ├── actions/            # Server actions
+│   ├── database/           # Database models and connections
+│   └── validators/         # Form validation schemas
+├── public/                 # Static assets
+└── types/                  # TypeScript types
+```
+
+## 🔄 Data Flow Diagram
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant FE as Frontend
+    participant SA as Server Actions
+    participant DB as MongoDB
+    participant PS as Payment Service
+
+    U->>FE: Navigate to create event
+    FE->>U: Display event form
+    U->>FE: Fill form and submit
+    FE->>SA: Call createEvent action
+    SA->>DB: Save event data
+    DB-->>SA: Return success
+    SA-->>FE: Redirect to event page
+
+    U->>FE: Browse events
+    FE->>SA: Call getAllEvents
+    SA->>DB: Query events
+    DB-->>SA: Return events
+    SA-->>FE: Send events data
+    FE->>U: Display events
+
+    U->>FE: Click buy ticket
+    FE->>SA: Call checkoutOrder
+    SA->>PS: Create Stripe session
+    PS-->>SA: Return session URL
+    SA-->>FE: Redirect to payment
+    PS->>U: Process payment
+    PS-->>SA: Webhook confirmation
+    SA->>DB: Create order record
+```
+
+## 🔐 Authentication Flow
+
+```mermaid
+flowchart LR
+    A[User Visits Site] --> B{Authenticated?}
+    B -->|No| C[Redirect to Sign In]
+    C --> D[Clerk Authentication]
+    D --> E[OAuth/Social Login]
+    E --> F[User Profile Created]
+    F --> G[Redirect to Homepage]
+    B -->|Yes| G
+    G --> H[Browse/Create Events]
+```
+
+## 💳 Payment Processing Flow
+
+```mermaid
+flowchart LR
+    A[User Clicks Buy Ticket] --> B[CheckoutButton Component]
+    B --> C{User Signed In?}
+    C -->|No| D[Redirect to Sign In]
+    C -->|Yes| E[Call checkoutOrder Action]
+    E --> F[Create Stripe Session]
+    F --> G[Redirect to Stripe Checkout]
+    G --> H{Payment Success?}
+    H -->|Yes| I[Stripe Webhook]
+    I --> J[Create Order in DB]
+    H -->|No| K[Show Error]
+    J --> L[Update User Dashboard]
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- MongoDB database
+- Clerk account
+- Stripe account
+- UploadThing account
+
+### Environment Variables
+
+Create a `.env` file with the following variables:
+
+```
+# NEXT.JS
+NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+
+# CLERK AUTHENTICATION
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+WEBHOOK_SECRET=your_webhook_secret
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+
+# DATABASE
+MONGODB_URI=your_mongodb_connection_string
+
+# UPLOADTHING
+UPLOADTHING_SECRET=your_uploadthing_secret
+UPLOADTHING_APP_ID=your_uploadthing_app_id
+
+# STRIPE
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+```
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/event-management-system.git
+cd event-management-system
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up environment variables (see above)
+
+4. Run the development server:
+
+```bash
+npm run dev
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 🎯 Core Functionality
+
+### Event Management
+
+| Action     | Description                                                                               |
+| ---------- | ----------------------------------------------------------------------------------------- |
+| **Create** | Users can create new events with title, description, dates, location, pricing, and images |
+| **Read**   | Browse all events, search by keywords, filter by category                                 |
+| **Update** | Event organizers can edit their events                                                    |
+| **Delete** | Event organizers can delete their events                                                  |
+
+### User Roles
+
+| Role                   | Permissions                                     |
+| ---------------------- | ----------------------------------------------- |
+| **Guest**              | Browse events, view event details               |
+| **Authenticated User** | Create events, purchase tickets, manage profile |
+| **Event Organizer**    | Manage own events, view attendee lists          |
+
+### Data Models
+
+#### Event Model
+
+```
+interface IEvent {
+  _id: string;
+  title: string;
+  description?: string;
+  location?: string;
+  createdAt: Date;
+  imageUrl: string;
+  startDateTime: Date;
+  endDateTime: Date;
+  price: string;
+  isFree: boolean;
+  url?: string;
+  category: { _id: string, name: string }
+  organizer: { _id: string, firstName: string, lastName: string }
+}
+```
+
+#### User Model
+
+```
+interface IUser {
+  _id: string;
+  clerkId: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  photo: string;
+  events: string[]; // References to created events
+}
+```
+
+## 🧪 Testing Strategy
+
+| Test Type             | Tools                       | Coverage                   |
+| --------------------- | --------------------------- | -------------------------- |
+| **Unit Tests**        | Jest, React Testing Library | Components & Utilities     |
+| **Integration Tests** | Cypress                     | User flows                 |
+| **E2E Tests**         | Playwright                  | Full application workflows |
+
+## 📈 Performance Optimizations
+
+| Optimization           | Implementation                                               |
+| ---------------------- | ------------------------------------------------------------ |
+| **Server Components**  | Leveraging Next.js 14 server components for faster rendering |
+| **Image Optimization** | Using Next.js Image component                                |
+| **Code Splitting**     | Dynamic imports for heavy components                         |
+| **Caching**            | Revalidation strategies with `revalidatePath`                |
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 🌐 Webhook System Explanation
+
+The Event Management System uses webhooks to synchronize data between external services (Stripe, Clerk) and the MongoDB database. This ensures real-time updates without polling.
+
+### Stripe Webhook Integration
+
+When a user purchases a ticket, the system creates a Stripe checkout session. Once the payment is completed, Stripe sends a webhook to our application to confirm the transaction and store the order details.
+
+#### Flowchart: Stripe Payment Webhook
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant FE as Frontend
+    participant SA as Server Action
+    participant S as Stripe
+    participant WH as Webhook Endpoint
+    participant DB as MongoDB
+
+    U->>FE: Click "Buy Ticket"
+    FE->>SA: checkoutOrder(eventData)
+    SA->>S: Create Checkout Session
+    S-->>SA: Session URL
+    SA-->>FE: Redirect to Stripe
+    FE->>S: Complete Payment
+    S->>WH: POST /webhook/stripe (checkout.session.completed)
+    WH->>WH: Verify webhook signature
+    WH->>DB: createOrder(orderData)
+    DB-->>WH: Order saved
+    WH-->>S: HTTP 200 OK
+```
+
+#### Key Components:
+
+1. **Checkout Process**:
+
+   - User initiates ticket purchase through [CheckoutButton.tsx](components/shared/CheckoutButton.tsx)
+   - [checkoutOrder](lib/actions/order.actions.ts) creates a Stripe session with metadata
+   - User completes payment on Stripe checkout page
+
+2. **Webhook Handling**:
+
+   - Stripe sends `checkout.session.completed` event to `/api/webhook/stripe/route.ts`
+   - Webhook verifies the signature using `STRIPE_WEBHOOK_SECRET`
+   - Extracts order data from event metadata
+   - Calls [createOrder](lib/actions/order.actions.ts) to store in MongoDB
+
+3. **Data Storage**:
+   - Order information stored in [Order collection](lib/database/models/order.model.ts)
+   - References to Event and User documents maintained via ObjectId
+   - Stripe ID stored for reconciliation purposes
+
+### Clerk Webhook Integration
+
+Clerk webhooks synchronize user data between Clerk's authentication system and our MongoDB database, ensuring consistency across platforms.
+
+#### Flowchart: Clerk Authentication Webhook
+
+```mermaid
+graph TD
+    A[User Action] --> B[Clerk Dashboard]
+    B --> C{Event Type}
+    C -->|user.created| D[Create User in MongoDB]
+    C -->|user.updated| E[Update User in MongoDB]
+    C -->|user.deleted| F[Delete User from MongoDB]
+    D --> G[Update Clerk Metadata]
+    G --> H[Add MongoDB userId to Clerk]
+```
+
+#### Key Components:
+
+1. **User Synchronization**:
+
+   - When a user signs up, Clerk sends `user.created` event to `/api/webhook/clerk/route.ts`
+   - Webhook creates a corresponding user document in [User collection](lib/database/models/user.model.ts)
+   - MongoDB `_id` is added to Clerk's public metadata for client-side access
+
+2. **Profile Updates**:
+
+   - When user updates profile, Clerk sends `user.updated` event
+   - Webhook synchronizes changes to MongoDB user document
+
+3. **Account Deletion**:
+   - When user deletes account, Clerk sends `user.deleted` event
+   - Webhook removes user from MongoDB and cleans up related data
+
+### Webhook Security
+
+Both webhook implementations include security measures:
+
+1. **Stripe Webhooks**:
+
+   - Signature verification using `stripe.webhooks.constructEvent`
+   - Requires `STRIPE_WEBHOOK_SECRET` environment variable
+
+2. **Clerk Webhooks**:
+   - Signature verification using Svix library
+   - Requires `WEBHOOK_SECRET` environment variable
+
+### Webhook Endpoint URLs
+
+- Stripe Webhook: `POST /api/webhook/stripe`
+- Clerk Webhook: `POST /api/webhook/clerk`
+
+These endpoints must be publicly accessible URLs for the services to send events. During local development, tools like ngrok can be used to expose localhost endpoints.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/) for the amazing React framework
+- [Clerk](https://clerk.dev/) for authentication
+- [Stripe](https://stripe.com/) for payment processing
+- [UploadThing](https://uploadthing.com/) for file uploads
+- [ShadCN/UI](https://ui.shadcn.com/) for beautiful components
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by Mausam Kar </sub>
+</div>
