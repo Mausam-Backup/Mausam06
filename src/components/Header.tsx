@@ -150,6 +150,16 @@ export const Header = () => {
                   />
                 </>
               )}
+              <Line vert maxHeight="24" />
+              {mounted && (
+                <IconButton
+                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                  icon={theme === 'dark' ? 'sun' : 'moon'}
+                  size="m"
+                  tooltip={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                  variant="ghost"
+                />
+              )}
             </Flex>
           </Flex>
         </Flex>
@@ -162,15 +172,6 @@ export const Header = () => {
             gap="20"
           >
             <Flex hide="s">{display.time && <TimeDisplay timeZone={person.location} />}</Flex>
-            {mounted && (
-                <IconButton
-                    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                    icon={theme === 'dark' ? 'sun' : 'moon'}
-                    size="m"
-                    tooltip={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-                    variant="ghost"
-                />
-            )}
           </Flex>
         </Flex>
       </Flex>
