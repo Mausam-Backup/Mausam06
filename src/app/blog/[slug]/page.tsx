@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Heading, Row, Text } from "@/once-ui/components";
+import { AvatarGroup, Button, Column, Flex, Heading, Row, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
@@ -71,10 +71,14 @@ export default function Blog({ params }: BlogParams) {
   const avatars =
     post.metadata.team?.map((person) => ({
       src: person.avatar,
-    })) || [];
+    })) || [
+      {
+        src: person.avatar,
+      },
+    ];
 
   return (
-    <Column as="section" maxWidth="xs" gap="l">
+    <Column as="section" maxWidth="l" gap="l" horizontal="center">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -97,17 +101,20 @@ export default function Blog({ params }: BlogParams) {
           }),
         }}
       />
-      <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
-        Posts
-      </Button>
+      <Flex fillWidth gap="16" vertical="center" direction="row" mobileDirection="row">
+        <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft" />
+        <Row gap="12" vertical="center">
+          {avatars.length > 0 && <AvatarGroup size="s" avatars={avatars} />}
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            {person.name}
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
+          </Text>
+        </Row>
+      </Flex>
       <Heading variant="display-strong-s">{post.metadata.title}</Heading>
-      <Row gap="12" vertical="center">
-        {avatars.length > 0 && <AvatarGroup size="s" avatars={avatars} />}
-        <Text variant="body-default-s" onBackground="neutral-weak">
-          {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
-        </Text>
-      </Row>
-      <Column as="article" fillWidth>
+      <Column style={{ margin: "auto" }} as="article" maxWidth="m" fillWidth>
         <CustomMDX source={post.content} />
       </Column>
       <ScrollToHash />
