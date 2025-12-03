@@ -105,12 +105,14 @@ export default function Blog({ params }: BlogParams) {
         <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft" />
         <Row gap="12" vertical="center">
           {avatars.length > 0 && <AvatarGroup size="s" avatars={avatars} />}
-          <Text variant="body-default-s" onBackground="neutral-weak">
-            {person.name}
-          </Text>
-          <Text variant="body-default-s" onBackground="neutral-weak">
-            {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
-          </Text>
+          <Row gap="12" show="s" vertical="center">
+            <Text variant="body-default-s" onBackground="neutral-weak">
+              {person.name}
+            </Text>
+            <Text variant="body-default-s" onBackground="neutral-weak">
+              {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
+            </Text>
+          </Row>
         </Row>
       </Flex>
       <Heading variant="display-strong-s">{post.metadata.title}</Heading>
