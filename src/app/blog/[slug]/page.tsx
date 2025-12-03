@@ -101,8 +101,7 @@ export default function Blog({ params }: BlogParams) {
           }),
         }}
       />
-      <Flex fillWidth gap="16" vertical="center" direction="row" mobileDirection="row">
-        <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft" />
+      <Flex fillWidth gap="16" vertical="center" horizontal="space-between">
         <Row gap="12" vertical="center">
           {avatars.length > 0 && <AvatarGroup size="s" avatars={avatars} />}
           <Row gap="12" show="s" vertical="center">
@@ -115,7 +114,12 @@ export default function Blog({ params }: BlogParams) {
           </Row>
         </Row>
       </Flex>
-      <Heading variant="display-strong-s">{post.metadata.title}</Heading>
+      <Flex fillWidth gap="16" vertical="center" direction="row" mobileDirection="row">
+        <Flex hide="s">
+          <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft" />
+        </Flex>
+        <Heading variant="display-strong-s">{post.metadata.title}</Heading>
+      </Flex>
       <Column style={{ margin: "auto" }} as="article" maxWidth="m" fillWidth>
         <CustomMDX source={post.content} />
       </Column>
