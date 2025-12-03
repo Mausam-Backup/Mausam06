@@ -13,97 +13,226 @@ team:
 link: "https://rag-chatbot-demo.vercel.app/"
 ---
 
-## Project Overview
+<div align="center">
 
-RAG Chatbot is a modern chatbot application that revolutionizes how users interact with PDF documents. Built by Mausam Kar, this intelligent assistant leverages Retrieval Augmented Generation technology combined with Google Gemini and Pinecone vector database to provide accurate, context-aware answers to questions about uploaded documents. The application makes document analysis accessible and efficient through an intuitive interface and powerful AI capabilities.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Node.js](https://img.shields.io/badge/node-%3E%3D16.0.0-blue.svg)
+![React](https://img.shields.io/badge/react-%5E18.0.0-blue.svg)
+![TypeScript](https://img.shields.io/badge/typescript-%5E4.0.0-blue.svg)
+![Vercel](https://img.shields.io/badge/vercel-deployed-brightgreen)
+![Render](https://img.shields.io/badge/render-backend-brightgreen)
 
-**Developer:** Mausam Kar  
-**GitHub:** [@Mausam5055](https://github.com/Mausam5055)  
-**Portfolio:** [mausam03.vercel.app](https://mausam03.vercel.app)
+</div>
 
-## Core Capabilities
+A modern chatbot application that allows users to upload PDF documents and ask questions about their content using Retrieval Augmented Generation (RAG) with Google Gemini and Pinecone vector database.
 
-The application enables users to upload PDF documents of any size, which are then processed and made searchable through advanced AI technology. Users can ask natural language questions about their documents and receive intelligent, context-aware answers powered by Google Gemini. The system retrieves relevant context snippets from the documents, ensuring that answers are grounded in the actual document content rather than relying solely on the language model's general knowledge.
+## 🌟 Features
 
-The interface supports both dark and light themes, allowing users to work comfortably in any environment. The responsive design ensures seamless functionality across desktop computers, tablets, and mobile devices. Users can view, manage, and delete uploaded documents through an intuitive document management interface, maintaining complete control over their data.
+| Feature                | Description                                            |
+| ---------------------- | ------------------------------------------------------ |
+| 📄 PDF Upload          | Upload and process PDF documents of any size           |
+| 💬 AI-Powered Chat     | Ask questions about your documents using Google Gemini |
+| 🔍 Context Retrieval   | Get relevant context snippets from your documents      |
+| 🌓 Dark/Light Mode     | Toggle between dark and light themes                   |
+| 📱 Responsive Design   | Works on desktop, tablet, and mobile devices           |
+| 🗂️ Document Management | View, manage, and delete uploaded documents            |
 
-## Technical Architecture
+## 🏗️ Architecture
 
-The application follows a modern full-stack architecture with clear separation of concerns. The frontend, built with React and Vite, is deployed on Vercel, providing users with a fast, responsive interface. The backend, powered by Express.js, runs on Render with Uptime Robot monitoring to ensure continuous availability. Pinecone serves as the vector database for storing and retrieving document embeddings, while Google Gemini provides the AI capabilities for understanding questions and generating answers.
+```mermaid
+graph TB
+    A[Frontend - React/Vite] --> B[API Gateway]
+    B --> C[Backend - Express.js]
+    C --> D[(Pinecone Vector DB)]
+    C --> E[(In-Memory Storage)]
+    C --> F[Google Gemini API]
+    C --> G[PDF Processing]
 
-The architecture prioritizes scalability and performance. PDF processing happens asynchronously on the backend, allowing users to upload documents without experiencing delays. The vector database enables lightning-fast similarity searches across potentially millions of document chunks, and the integration with Google Gemini ensures high-quality, contextual responses to user queries.
+    subgraph Vercel
+        A
+    end
 
-## How RAG Works
+    subgraph Render
+        C
+        D
+        E
+        F
+        G
+    end
 
-The Retrieval Augmented Generation process begins when a user uploads a PDF document. The system parses the file and extracts all text content, which is then divided into manageable chunks to ensure comprehensive coverage while maintaining context. Each chunk is converted into a vector embedding using Google Gemini's embedding model, creating a numerical representation that captures the semantic meaning of the text.
+    style A fill:#4F46E5,stroke:#000,color:#fff
+    style C fill:#10B981,stroke:#000,color:#fff
+    style D fill:#8B5CF6,stroke:#000,color:#fff
+    style F fill:#F59E0B,stroke:#000,color:#fff
+```
 
-These embeddings are stored in Pinecone's vector database along with metadata including the document ID, page number, and original text. When a user asks a question, the system converts the question into an embedding using the same model, ensuring compatibility with the stored document embeddings. Pinecone then performs a similarity search to retrieve the most relevant context from the uploaded documents.
+## 🔄 Data Flow
 
-The retrieved context, combined with the user's question, is sent to Google Gemini, which generates a comprehensive answer based on the specific document content. This approach ensures that answers are accurate, relevant, and directly tied to the information in the uploaded documents, avoiding the hallucination issues that can occur when AI models rely solely on their training data.
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant F as Frontend
+    participant B as Backend
+    participant P as Pinecone
+    participant G as Gemini
 
-## Technology Stack
+    U->>F: Upload PDF
+    F->>B: POST /api/upload
+    B->>B: Process PDF & Extract Text
+    B->>B: Chunk Text Content
+    B->>G: Generate Embeddings
+    B->>P: Store Embeddings
+    B->>F: Return Document Info
 
-The frontend leverages React 18 with TypeScript for type-safe development and improved developer experience. Vite serves as the build tool, providing instant hot module replacement and optimized production builds. Tailwind CSS enables rapid UI development with utility-first styling, creating a modern and responsive interface that works beautifully across all devices.
+    U->>F: Ask Question
+    F->>B: POST /api/chat
+    B->>G: Generate Question Embedding
+    B->>P: Retrieve Similar Context
+    B->>G: Generate Answer with Context
+    B->>F: Return Answer & Context Snippets
+    F->>U: Display Results
+```
 
-The backend is built with Express.js and Node.js, providing a robust and scalable server architecture. PDF processing utilizes the pdf-parse library to extract text content reliably from various PDF formats. The integration with Google Gemini's embedding model ensures consistent, high-quality vector representations of both documents and questions.
+## 🚀 Quick Start
 
-Pinecone provides the vector database infrastructure, offering fast similarity searches and scalable storage for document embeddings. The system uses in-memory storage for the demo version, though this can be easily replaced with a persistent database solution for production deployments. The entire stack is designed for easy deployment and maintenance, with the frontend on Vercel and backend on Render.
+### Prerequisites
 
-## API Design
+| Requirement           | Version   |
+| --------------------- | --------- |
+| Node.js               | >= 16.0.0 |
+| npm                   | >= 8.0.0  |
+| Google Gemini API Key | -         |
+| Pinecone Account      | -         |
 
-The document management API provides endpoints for all essential operations. Users can upload and process PDF documents through a simple POST request, retrieve lists of all uploaded documents, and access specific documents by their ID. Document deletion removes both the document record and all associated vector embeddings from Pinecone, ensuring clean data management. The messaging API allows retrieving chat histories for specific documents and clearing message threads when needed.
+### Environment Variables
 
-The chat endpoint handles the core question-answering functionality. When a user submits a question, the API processes it through the RAG pipeline, retrieving relevant context and generating an answer using Google Gemini. The response includes both the generated answer and the context snippets used, providing transparency into how the answer was derived.
+Create a `.env.local` file with the following variables:
 
-## Project Structure and Organization
+| Variable           | Description             | Example               |
+| ------------------ | ----------------------- | --------------------- |
+| `GEMINI_API_KEY`   | Google Gemini API Key   | `AIzaSyB123456789...` |
+| `PINECONE_API_KEY` | Pinecone API Key        | `abc123xyz...`        |
+| `PINECONE_CLOUD`   | Pinecone Cloud Provider | `aws`                 |
+| `PINECONE_REGION`  | Pinecone Region         | `us-west-2`           |
+| `PINECONE_INDEX`   | Pinecone Index Name     | `rag-chatbot-index`   |
 
-The codebase is organized into three main sections for clarity and maintainability. The client directory contains all React frontend code, including UI components, custom React hooks, utility functions, and page components. The server directory houses the Express backend with core services for Gemini integration, PDF processing, Pinecone operations, and RAG logic implementation.
+### Installation
 
-A shared directory contains TypeScript types and validation schemas used by both frontend and backend, ensuring type consistency across the entire application. This modular structure makes it easy to locate specific functionality and facilitates collaboration among multiple developers.
+```bash
+# Clone the repository
+git clone https://github.com/your-username/rag-chatbot.git
+cd rag-chatbot
 
-## Deployment Strategy
+# Install dependencies
+npm install
 
-The deployment architecture takes advantage of specialized hosting platforms for optimal performance. The frontend deploys to Vercel, benefiting from their global edge network, automatic HTTPS, and seamless integration with Git workflows. Every push to the main branch triggers an automatic deployment, while pull requests receive preview deployments for testing.
+# Start development server
+npm run dev
+```
 
-The backend runs on Render, which provides reliable hosting for the Express server with automatic SSL certificates and simple environment variable management. Uptime Robot monitors the backend service continuously, ensuring 24/7 availability and alerting if any issues arise. Pinecone's cloud infrastructure handles the vector database, providing scalable storage and fast query performance without requiring manual management.
+### Deployment Architecture
 
-## Development Workflow
+| Service   | Platform              | URL Pattern                                      |
+| --------- | --------------------- | ------------------------------------------------ |
+| Frontend  | Vercel                | `https://your-app.vercel.app`                    |
+| Backend   | Render + Uptime Robot | `https://your-backend.onrender.com`              |
+| Vector DB | Pinecone              | `https://your-index-1234567.svc.XYZ.pinecone.io` |
 
-Setting up the development environment requires Node.js version 16 or higher and npm version 8 or higher. Developers need to obtain API keys for both Google Gemini and Pinecone, along with setting up a Pinecone index with appropriate dimensions for the chosen embedding model. Environment variables configure these services securely without hardcoding sensitive information.
+## 🛠️ API Endpoints
 
-The development process is streamlined with hot module replacement on both frontend and backend, allowing instant feedback during development. The TypeScript configuration ensures type safety across the entire codebase, catching potential errors before they reach production. Clear separation between development and production environments prevents accidental data corruption or service disruptions.
+### Document Management
 
-## Future Enhancements
+| Endpoint                    | Method | Description                           |
+| --------------------------- | ------ | ------------------------------------- |
+| `/api/upload`               | POST   | Upload and process a PDF document     |
+| `/api/documents`            | GET    | Retrieve all uploaded documents       |
+| `/api/documents/:id`        | GET    | Retrieve a specific document          |
+| `/api/documents/:id`        | DELETE | Delete a document and its data        |
+| `/api/messages/:documentId` | GET    | Retrieve chat messages for a document |
+| `/api/messages/:documentId` | DELETE | Clear chat messages for a document    |
 
-The roadmap for RAG Chatbot includes several exciting enhancements. Support for additional document formats beyond PDF would expand the application's utility, allowing users to work with Word documents, presentations, and other file types. Multi-document querying would enable users to ask questions across their entire document library, finding connections and insights across multiple sources.
+### Chat Endpoints
 
-Conversation history persistence would allow users to return to previous chat sessions, building on earlier discussions about their documents. User authentication and document privacy features would enable secure multi-user deployments. Advanced search capabilities with filters and faceted navigation would help users find specific information more quickly.
+| Endpoint    | Method | Description                     |
+| ----------- | ------ | ------------------------------- |
+| `/api/chat` | POST   | Ask a question about a document |
 
-Enhanced analytics could provide insights into document usage patterns, popular topics, and common questions. Integration with cloud storage services like Google Drive and Dropbox would streamline the document upload process. These features would transform RAG Chatbot from a powerful proof-of-concept into a comprehensive document intelligence platform.
+## 📁 Project Structure
 
-## Technical Challenges and Solutions
+```
+rag-chatbot/
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── components/    # UI components
+│   │   ├── hooks/         # Custom React hooks
+│   │   ├── lib/           # Utility functions
+│   │   ├── pages/         # Page components
+│   │   └── App.tsx        # Main app component
+│   └── index.html         # HTML entry point
+├── server/                # Express backend
+│   ├── lib/               # Core services
+│   │   ├── gemini-service.ts    # Gemini API integration
+│   │   ├── pdf-processor.ts     # PDF processing
+│   │   ├── pinecone-service.ts  # Pinecone integration
+│   │   └── rag-service.ts       # RAG logic
+│   ├── index.ts           # Server entry point
+│   ├── routes.ts          # API routes
+│   └── storage.ts         # Data storage
+├── shared/                # Shared types and schemas
+├── package.json           # Project dependencies
+└── README.md              # This file
+```
 
-Building an effective RAG system requires careful consideration of several challenges. Chunking strategies must balance context preservation with embedding quality, ensuring that related information stays together while keeping chunks small enough for precise retrieval. The system implements intelligent chunking that respects paragraph boundaries and maintains semantic coherence.
+## 🧠 How It Works
 
-Managing the trade-off between retrieval accuracy and response speed required optimization at multiple levels. Pinecone's indexing strategies and query parameters were tuned to provide fast results without sacrificing quality. The integration between vector search and language model generation needed careful prompt engineering to ensure the model uses retrieved context effectively.
+### Retrieval Augmented Generation (RAG)
 
-Handling various PDF formats and edge cases in document processing required robust error handling and validation. The system gracefully manages malformed PDFs, encrypted documents, and files with unusual formatting, providing clear feedback to users when issues arise.
+1. **Document Processing**:
 
-## Impact and Applications
+   - PDF files are uploaded and parsed
+   - Text content is extracted and chunked
+   - Each chunk is converted to embeddings using Google Gemini
 
-RAG Chatbot demonstrates the practical application of cutting-edge AI technology to solve real-world problems. Students can use it to quickly find information in textbooks and research papers. Professionals can query technical documentation, contracts, and reports without manually searching through hundreds of pages. Researchers can analyze large document collections efficiently.
+2. **Vector Storage**:
 
-The project showcases expertise in modern full-stack development, AI integration, vector database management, and cloud deployment. It demonstrates the ability to combine multiple technologies into a cohesive solution that provides genuine value to users. The clean architecture and well-organized codebase make it an excellent foundation for future enhancements and customizations.
+   - Embeddings are stored in Pinecone vector database
+   - Each vector is associated with metadata (document ID, page number, etc.)
 
-## Acknowledgements
+3. **Question Answering**:
+   - User questions are converted to embeddings
+   - Similar context is retrieved from Pinecone
+   - Gemini generates answers using the retrieved context
 
-This project builds upon several powerful technologies and platforms. Google Gemini provides the AI capabilities that make intelligent question answering possible, particularly through the embedding model that creates high-quality vector representations. Pinecone's vector database offers the performance and scalability needed for rapid similarity search across document collections.
+### Technologies Used
 
-Vercel's frontend hosting and Render's backend infrastructure provide reliable, high-performance deployment platforms. Uptime Robot ensures continuous backend availability through proactive monitoring. Together, these technologies enable RAG Chatbot to deliver a seamless, intelligent document interaction experience.
+| Category           | Technology                            |
+| ------------------ | ------------------------------------- |
+| **Frontend**       | React, TypeScript, Tailwind CSS, Vite |
+| **Backend**        | Express.js, Node.js                   |
+| **AI**             | Google Gemini, Pinecone               |
+| **Storage**        | In-Memory Storage (for demo)          |
+| **PDF Processing** | pdf-parse                             |
+| **Deployment**     | Vercel (Frontend), Render (Backend)   |
 
----
+## 🤝 Contributing
 
-RAG Chatbot represents the convergence of modern web development, artificial intelligence, and practical utility, demonstrating how advanced technology can make information more accessible and actionable.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgements
+
+- [Google Gemini](https://ai.google.dev/) for the powerful language model(used embedding_model_001)
+- [Pinecone](https://www.pinecone.io/) for the vector database
+- [Vercel](https://vercel.com/) for frontend hosting
+- [Render](https://render.com/) for backend hosting
+- [Uptime Robot](https://uptimerobot.com/) for 24/7 backend monitoring and uptime
 
 ## 👤 Author
 
@@ -113,3 +242,7 @@ RAG Chatbot represents the convergence of modern web development, artificial int
 - Phone: +918638545574
 - GitHub: [@Mausam5055](https://github.com/Mausam5055)
 - Portfolio: [mausam03.vercel.app](https://mausam03.vercel.app)
+
+```
+
+```
