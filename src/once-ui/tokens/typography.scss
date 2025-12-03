@@ -21,50 +21,50 @@
     --font-weight-display-strong:  var(--font-weight-extraBold);
 
     /* FONT SIZE */
-    --font-size-display-xl:        5rem;
-    --font-size-display-l:         4rem;
-    --font-size-display-m:         3rem;
-    --font-size-display-s:         2.5rem;
-    --font-size-display-xs:        2rem;
+    --font-size-display-xl:        5.5rem;
+    --font-size-display-l:         4.4rem;
+    --font-size-display-m:         3.3rem;
+    --font-size-display-s:         2.75rem;
+    --font-size-display-xs:        2.2rem;
 
-    --font-size-heading-xl:        1.5rem;
-    --font-size-heading-l:         1.33rem;
-    --font-size-heading-m:         1.25rem;
-    --font-size-heading-s:         1.125rem;
-    --font-size-heading-xs:        1rem;
+    --font-size-heading-xl:        1.65rem;
+    --font-size-heading-l:         1.463rem;
+    --font-size-heading-m:         1.375rem;
+    --font-size-heading-s:         1.2375rem;
+    --font-size-heading-xs:        1.1rem;
 
-    --font-size-body-xl:           1.25rem;
-    --font-size-body-l:            1.125rem;
-    --font-size-body-m:            1rem;
-    --font-size-body-s:            0.875rem;
-    --font-size-body-xs:           0.75rem;
+    --font-size-body-xl:           1.375rem;
+    --font-size-body-l:            1.2375rem;
+    --font-size-body-m:            1.1rem;
+    --font-size-body-s:            0.9625rem;
+    --font-size-body-xs:           0.825rem;
 
-    --font-size-label-l:           1rem;
-    --font-size-label-m:           0.925rem;
-    --font-size-label-s:           0.825rem;
+    --font-size-label-l:           1.1rem;
+    --font-size-label-m:           1.0175rem;
+    --font-size-label-s:           0.9075rem;
 
     /* LINE HEIGHT */
-    --line-height-display-xl:      5rem;
-    --line-height-display-l:       4.25rem;
-    --line-height-display-m:       3.25rem;
-    --line-height-display-s:       3rem;
-    --line-height-display-xs:      2.5rem;
+    --line-height-display-xl:      5.5rem;
+    --line-height-display-l:       4.675rem;
+    --line-height-display-m:       3.575rem;
+    --line-height-display-s:       3.3rem;
+    --line-height-display-xs:      2.75rem;
 
-    --line-height-heading-xl:      2rem;
-    --line-height-heading-l:       1.75rem;
-    --line-height-heading-m:       1.5rem;
-    --line-height-heading-s:       1.5rem;
-    --line-height-heading-xs:      1.25rem;
+    --line-height-heading-xl:      2.2rem;
+    --line-height-heading-l:       1.925rem;
+    --line-height-heading-m:       1.65rem;
+    --line-height-heading-s:       1.65rem;
+    --line-height-heading-xs:      1.375rem;
 
-    --line-height-body-xl:         1.75rem;
-    --line-height-body-l:          1.5rem;
-    --line-height-body-m:          1.5rem;
-    --line-height-body-s:          1.125rem;
-    --line-height-body-xs:         1rem;
+    --line-height-body-xl:         1.925rem;
+    --line-height-body-l:          1.65rem;
+    --line-height-body-m:          1.65rem;
+    --line-height-body-s:          1.2375rem;
+    --line-height-body-xs:         1.1rem;
 
-    --line-height-label-l:         1.25rem;
-    --line-height-label-m:         1.25rem;
-    --line-height-label-s:         1rem;
+    --line-height-label-l:         1.375rem;
+    --line-height-label-m:         1.375rem;
+    --line-height-label-s:         1.1rem;
 }
 
 @media (--m) {
@@ -79,6 +79,16 @@
         --font-size-heading-xl:    1.33rem;
         --font-size-heading-l:     1.25rem;
         --font-size-heading-m:     1.125rem;
+
+        --font-size-body-xl:       1.25rem;
+        --font-size-body-l:        1.125rem;
+        --font-size-body-m:        1rem;
+        --font-size-body-s:        0.875rem;
+        --font-size-body-xs:       0.75rem;
+
+        --font-size-label-l:       1rem;
+        --font-size-label-m:       0.925rem;
+        --font-size-label-s:       0.825rem;
     
         /* LINE HEIGHT */
         --line-height-display-xl:  3.75rem;
@@ -90,6 +100,16 @@
         --line-height-heading-xl:  1.75rem;
         --line-height-heading-l:   1.5rem;
         --line-height-heading-m:   1.25rem;
+
+        --line-height-body-xl:     1.75rem;
+        --line-height-body-l:      1.5rem;
+        --line-height-body-m:      1.5rem;
+        --line-height-body-s:      1.125rem;
+        --line-height-body-xs:     1rem;
+
+        --line-height-label-l:     1.25rem;
+        --line-height-label-m:     1.25rem;
+        --line-height-label-s:     1rem;
     }
 }
 
