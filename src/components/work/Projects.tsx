@@ -4,18 +4,28 @@ import { ProjectCard } from "@/components";
 
 interface ProjectsProps {
   range?: [number, number?];
+  slugs?: string[];
 }
 
-export function Projects({ range }: ProjectsProps) {
+export function Projects({ range, slugs }: ProjectsProps) {
   let allProjects = getPosts(["src", "app", "work", "projects"]);
 
-  const sortedProjects = allProjects.sort((a, b) => {
-    return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
-  });
+  if (slugs) {
+    allProjects = allProjects
+      .filter((post) => slugs.includes(post.slug))
+      .sort((a, b) => slugs.indexOf(a.slug) - slugs.indexOf(b.slug));
+  } else {
+    allProjects.sort((a, b) => {
+      return (
+        new Date(b.metadata.publishedAt).getTime() -
+        new Date(a.metadata.publishedAt).getTime()
+      );
+    });
+  }
 
   const displayedProjects = range
-    ? sortedProjects.slice(range[0] - 1, range[1] ?? sortedProjects.length)
-    : sortedProjects;
+    ? allProjects.slice(range[0] - 1, range[1] ?? allProjects.length)
+    : allProjects;
 
   return (
     <Column fillWidth gap="xl" marginBottom="40" paddingX="l">
@@ -28,7 +38,9 @@ export function Projects({ range }: ProjectsProps) {
           title={post.metadata.title}
           description={post.metadata.summary}
           content={post.content}
-          avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
+          avatars={
+            post.metadata.team?.map((member) => ({ src: member.avatar })) || []
+          }
           link={post.metadata.link || ""}
         />
       ))}

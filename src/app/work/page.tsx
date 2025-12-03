@@ -68,7 +68,14 @@ export default function Work() {
           Featured Projects
         </Heading>
       </Flex>
-      <Projects range={[1, 3]} />
+      <Projects
+        range={[1, 3]}
+        slugs={[
+          "campussync-educational-management-platform",
+          "rag-chatbot-pdf-document-assistant",
+          "connecthub-real-time-chat-application",
+        ]}
+      />
     </Column>
   );
 }

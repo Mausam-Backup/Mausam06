@@ -50,7 +50,7 @@ const social = [
   {
     name: "Email",
     icon: "email",
-    link: "rikikumkar@gmail.com",
+    link: "mausamkumkar@gmail.com",
   },
 ];
 

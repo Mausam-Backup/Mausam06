@@ -97,7 +97,14 @@ export default function Home() {
         </Column>
       </Column>
       <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
+        <Projects
+          range={[1, 1]}
+          slugs={[
+            "campussync-educational-management-platform",
+            "rag-chatbot-pdf-document-assistant",
+            "connecthub-real-time-chat-application",
+          ]}
+        />
       </RevealFx>
       {routes["/blog"] && (
         <Flex fillWidth gap="24" mobileDirection="column">
@@ -111,7 +118,14 @@ export default function Home() {
           </Flex>
         </Flex>
       )}
-      <Projects range={[2, 3]} />
+      <Projects
+        range={[2, 3]}
+        slugs={[
+          "campussync-educational-management-platform",
+          "rag-chatbot-pdf-document-assistant",
+          "connecthub-real-time-chat-application",
+        ]}
+      />
       {newsletter.display && <Mailchimp newsletter={newsletter} />}
     </Column>
   );
