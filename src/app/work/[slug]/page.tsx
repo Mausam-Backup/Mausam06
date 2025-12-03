@@ -100,9 +100,7 @@ export default function Project({ params }: WorkParams) {
         }}
       />
       <Flex fillWidth gap="16" vertical="center" direction="row" mobileDirection="row">
-        <Button href="/work" variant="tertiary" weight="default" size="s" prefixIcon="chevronLeft">
-          Projects
-        </Button>
+        <Button href="/work" variant="tertiary" weight="default" size="s" prefixIcon="chevronLeft" />
         <Heading variant="display-strong-s">{post.metadata.title}</Heading>
       </Flex>
       {post.metadata.images.length > 0 && (
