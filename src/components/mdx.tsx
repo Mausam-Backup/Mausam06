@@ -198,9 +198,19 @@ type CustomMDXProps = MDXRemoteProps & {
   components?: typeof components;
 };
 
+import remarkGfm from "remark-gfm";
+
 export function CustomMDX(props: CustomMDXProps) {
   return (
     // @ts-ignore: Suppressing type error for MDXRemote usage
-    <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} />
+    <MDXRemote
+      {...props}
+      components={{ ...components, ...(props.components || {}) }}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+        },
+      }}
+    />
   );
 }
