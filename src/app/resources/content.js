@@ -61,7 +61,7 @@ const home = {
   headline: <>Full Stack Web Developer </>,
   subline: (
     <>
-      I'm Mausam Kar, a Full Stack Web Developer at <InlineCode>VIT</InlineCode>, where I craft intuitive
+      I&apos;m Mausam Kar, a Full Stack Web Developer at <InlineCode>VIT</InlineCode>, where I craft intuitive
       <br /> user experiences. After hours, I build my own projects.
     </>
   ),
